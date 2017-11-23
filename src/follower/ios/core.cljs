@@ -12,6 +12,7 @@
 (def image (r/adapt-react-class (.-Image ReactNative)))
 (def touchable-highlight (r/adapt-react-class (.-TouchableHighlight ReactNative)))
 (def flat-list (r/adapt-react-class (.-FlatList ReactNative)))
+(def layout-animation (.-LayoutAnimation ReactNative))
 
 (def logo-img (js/require "./images/cljs.png"))
 
@@ -21,6 +22,7 @@
   (.alert (.-Alert ReactNative) title))
 
 (defn attack [from to]
+  (.easeInEaseOut layout-animation)
   (let [attacked (update-in to [:hp] - (:ap from))]
     (dispatch [:attacked attacked])))
 
